@@ -1,0 +1,47 @@
+---
+- name: Add Varnish apt key.
+  apt_key: url=http://repo.varnish-cache.org/debian/GPG-key.txt state=present
+
+- name: Add Varnish apt repository.
+  apt_repository:
+    repo: "deb http://repo.varnish-cache.org/ubuntu {{ ansible_distribution_release }} varnish-4.0"
+    state: present
+
+- name: Install Varnish.
+  apt: name=varnish state=installed
+
+- name: Copy Varnish configuration.
+  template:
+    src: varnish.j2
+    dest: /etc/default/varnish
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Ensure Varnish config path exists.
+  file:
+    path: "{{ varnish_config_path }}"
+    state: directory
+
+- name: Copy Varnish default VCL.
+  template:
+    src: "{{ varnish_default_vcl_template_path }}"
+    dest: "{{ varnish_config_path }}/default.vcl"
+    owner: root
+    group: root
+    mode: 0644
+  when: varnish_use_default_vcl
+  notify: Restart varnish
+
+- name: Copy varnish secret.
+  template:
+    src: secret.j2
+    dest: "{{ varnish_config_path }}/secret"
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart varnish
+
+- name: Ensure Varnish is started and set to run on startup.
+  service: name=varnish state=started enabled=yes
+

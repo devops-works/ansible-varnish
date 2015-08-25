@@ -1,0 +1,5 @@
+---
+- include: check_vars.yml tags=check,varnish
+- include: varnish.yml tags=varnish
+- include: datadog.yml tags=varnish,datadog
+  when: pxc_datadog_user and pxc_datadog_password and datadog_enabled

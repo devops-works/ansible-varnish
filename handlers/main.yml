@@ -1,0 +1,3 @@
+---
+- name: Restart varnish
+  command: service varnish restart

@@ -1,0 +1,12 @@
+---
+varnish_admin_listen_host: "127.0.0.1"
+varnish_admin_listen_port: "6082"
+varnish_config_path: /etc/varnish
+varnish_default_backend_host: "127.0.0.1"
+varnish_default_backend_port: "8080"
+varnish_default_vcl_template_path: default.vcl.j2
+varnish_listen_port: "80"
+# This one is mandatpry !
+varnish_secret: false
+varnish_storage: "file,/var/lib/varnish/varnish_storage.bin,256M"
+varnish_use_default_vcl: true
