@@ -1,25 +1,25 @@
 ---
-- name: Add Varnish apt key.
+- name: Add Varnish apt key
   apt_key:
     url: https://packagecloud.io/varnishcache/varnish5/gpgkey
     state: present
 
-- name: Add Varnish apt repository.
+- name: Add Varnish apt repository
   apt_repository:
     repo: "deb https://packagecloud.io/varnishcache/varnish5/ubuntu/ {{ ansible_distribution_release }} main"
     state: present
 
-- name: Install Varnish.
+- name: Install Varnish
   apt:
     name: varnish
     state: installed
 
-- name: Ensure Varnish config path exists.
+- name: Ensure Varnish config path exists
   file:
     path: "{{ varnish_config_path }}"
     state: directory
 
-- name: Copy Varnish default VCL.
+- name: Copy Varnish default VCL
   template:
     src: default.vcl.j2
     dest: "{{ varnish_config_path }}/default.vcl"
@@ -29,7 +29,7 @@
   when: varnish_use_default_vcl
   notify: Restart varnish
 
-- name: Copy varnish secret.
+- name: Copy varnish secret
   template:
     src: secret.j2
     dest: "{{ varnish_config_path }}/secret"
@@ -40,13 +40,13 @@
 
 - name: Adds systemd override
   template:
-    path: override.conf.j2
+    src: override.conf.j2
     dest: /etc/systemd/system/varnish.service.d/override.conf
     owner: root
     group: root
     mode: 0644
 
-- name: Ensure Varnish is started and set to run on startup.
+- name: Ensure Varnish is started and set to run on startup
   service:
     name: varnish
     state: started
