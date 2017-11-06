@@ -51,4 +51,5 @@
     name: varnish
     state: started
     enabled: yes
+  notify: Restart varnish
 
