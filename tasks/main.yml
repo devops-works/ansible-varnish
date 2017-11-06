@@ -1,5 +1,9 @@
 ---
-- include: check_vars.yml tags=check,varnish
-- include: varnish.yml tags=varnish
-- include: datadog.yml tags=varnish,datadog
-  when: datadog_enabled
+- include: check_vars.yml
+  tags:
+    - check
+    - varnish
+
+- include: varnish.yml
+  tags:
+    - varnish
