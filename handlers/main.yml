@@ -1,3 +1,9 @@
 ---
 - name: Restart varnish
-  command: service varnish restart
+  service:
+    name: varnish
+    state: restarted
+
+- name: Reload systemd
+  systemd:
+    daemon_reload: true
