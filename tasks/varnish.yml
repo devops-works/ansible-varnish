@@ -14,6 +14,16 @@
     name: varnish
     state: installed
 
+- name: Adds systemd override
+  template:
+    src: override.conf.j2
+    dest: /etc/systemd/system/varnish.service.d/override.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Reload systemd
+
 - name: Ensure Varnish config path exists
   file:
     path: "{{ varnish_config_path }}"
@@ -36,17 +46,8 @@
     owner: root
     group: root
     mode: 0644
-  notify: Restart varnish
-
-- name: Adds systemd override
-  template:
-    src: override.conf.j2
-    dest: /etc/systemd/system/varnish.service.d/override.conf
-    owner: root
-    group: root
-    mode: 0644
   notify:
-    - Reload systemd
+    - Restart varnish
 
 - name: Ensure Varnish is started and set to run on startup
   service:
