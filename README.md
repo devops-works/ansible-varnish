@@ -1,6 +1,6 @@
 # Ansible Role: Varnish
 
-An Ansible Role that installs Varnish Debian/Ubuntu Linux.
+An Ansible Role that installs Varnish 5 on Debian/Ubuntu Linux.
 
 Stripped down version from [geerlingguy](https://github.com/geerlingguy/ansible-role-varnish).
 
