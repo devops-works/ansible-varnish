@@ -14,6 +14,14 @@
     name: varnish
     state: installed
 
+- name: Creates systemd override directory
+  file:
+    path: /etc/systemd/system/varnish.service.d
+    state: directory
+    mode: 0640
+    owner: root
+    group: root
+
 - name: Adds systemd override
   template:
     src: override.conf.j2
