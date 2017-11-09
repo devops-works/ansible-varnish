@@ -31,6 +31,7 @@
     mode: 0644
   notify:
     - Reload systemd
+    - Restart varnish
 
 - name: Ensure Varnish config path exists
   file:
@@ -62,5 +63,6 @@
     name: varnish
     state: started
     enabled: yes
-  notify: Restart varnish
+  notify:
+    - Restart varnish
 
