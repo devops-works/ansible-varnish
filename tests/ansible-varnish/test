@@ -16,5 +16,4 @@ echo "##### RUN TEST"
 # Check that the playbook runs
 assert_playbook_runs
 assert_playbook_idempotent
-assert_in_file /etc/nginx/nginx.conf "ssl_ciphers"
 
