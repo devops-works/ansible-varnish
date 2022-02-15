@@ -1,9 +1,9 @@
 ---
-- include: check_vars.yml
+- include_tasks: check_vars.yml
   tags:
     - check
     - varnish
 
-- include: varnish.yml
+- include_tasks: varnish.yml
   tags:
     - varnish
