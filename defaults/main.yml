@@ -11,3 +11,5 @@ varnish_listen_port: "80"
 varnish_secret: false
 varnish_storage: "malloc,256m"
 varnish_use_default_vcl: true
+
+varnish_version: 70
