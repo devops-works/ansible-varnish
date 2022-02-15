@@ -8,12 +8,12 @@
   apt_repository:
     repo: "deb https://packagecloud.io/varnishcache/varnish{{ varnish_version }}/{{ ansible_distribution | lower}}/ {{ ansible_distribution_release }} main"
     state: present
-    update_cache: false
+    # update_cache: false
 
 - name: Install Varnish
   apt:
     name: varnish
-    state: installed
+    state: present
 
 - name: Creates systemd override directory
   file:
