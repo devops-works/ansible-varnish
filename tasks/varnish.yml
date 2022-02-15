@@ -1,7 +1,7 @@
 ---
 - name: Add Varnish apt key
   apt_key:
-    url: https://packagecloud.io/varnishcache/varnish5/gpgkey
+    url: https://packagecloud.io/varnishcache/varnish{{ varnish_version }}/gpgkey
     state: present
 
 - name: Add Varnish apt repository
