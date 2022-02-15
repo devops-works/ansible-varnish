@@ -1,11 +1,13 @@
 ---
 - include_tasks: check_vars.yml
-  apply:
-    tags:
-      - check
-      - varnish
+  args:
+    apply:
+      tags:
+        - check
+        - varnish
 
 - include_tasks: varnish.yml
-  apply:
-    tags:
-      - varnish
+  args:
+    apply:
+      tags:
+        - varnish
